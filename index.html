@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web de Guille</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        header {
+            display: flex;
+            flex-direction: column;     /* Apila los elementos verticalmente */
+            justify-content: center;    /* Centra verticalmente */
+            align-items: center;        /* Centra horizontalmente */
+            height: auto;               /* Altura automática según el contenido */
+            padding: 2rem 3rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 4rem;        /* Espacio entre el texto y la imagen */
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 40px;
+            color:white;
+        }
+
+        header img {
+            max-width: 100%;
+            height: auto;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Móvil: 2 columnas */
+            gap: 1rem; /* Espaciado entre columnas y filas */
+            padding: 1rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 40px;
+            color:white;
+            text-align: center;
+        }
+
+        /* Escritorio: 5 columnas */
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>App Guillermo<br>Conoce mis videojuegos favoritos</h1>
+        <img src="imgs/guille2.jpg" width="100%"/>
+    </header>
+    <div class="container">
+        <div>
+            <p class="titulo">Stickman Clash</p>
+            <a href="https://www.crazygames.com/es/juego/stickman-clash" target="_blank">
+                <img src="imgs/stickman_clash.jpg" width="350px"/>
+            </a>
+        </div>
+        <div>
+            <p class="titulo">Brawl Stars</p>
+            <a href="https://supercell.com/en/games/brawlstars/" target="_blank">
+                <img src="imgs/brawl_stars.jpg" width="350px"/>
+            </a>
+        </div>        
+        <div>
+            <p class="titulo">Stumble Guys</p>
+            <a href="https://www.stumbleguys.com/" target="_blank">
+                <img src="imgs/stumble_guys.jpg" width="350px"/>
+            </a>
+        </div>   
+        <div>
+            <p class="titulo">Minecraft</p>
+            <a href="https://www.minecraft.com/" target="_blank">
+                <img src="imgs/minecraft.jpg" width="350px"/>
+            </a>
+        </div>   
+        <div>
+            <p class="titulo">Mario Kart</p>
+            <a href="https://mariokarttour.com/es-ES" target="_blank">
+                <img src="imgs/mario_kart.jpg" width="350px"/>
+            </a>
+        </div>                           
+    </div>
+</body>
+</html>
