@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web de Guille</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        header {
+            display: flex;
+            flex-direction: column;     /* Apila los elementos verticalmente */
+            justify-content: center;    /* Centra verticalmente */
+            align-items: center;        /* Centra horizontalmente */
+            height: auto;               /* Altura automática según el contenido */
+            padding: 2rem 3rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 1rem;        /* Espacio entre el texto y la imagen */
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 100px;
+            color:white;
+        }
+
+        header h2 {
+            margin-bottom: 4rem;        /* Espacio entre el texto y la imagen */
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 30px;
+            color:white;
+        }
+        header img {
+            max-width: 100%;
+            height: auto;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr); /* Móvil: 2 columnas */
+            gap: 1rem; /* Espaciado entre columnas y filas */
+            padding: 1rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 40px;
+            color:white;
+            text-align: center;
+        }
+
+        /* Escritorio: 5 columnas */
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        .tabs-container {
+            width: 20%;
+            background-color: #333;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 30px;
+            color:white;
+        }
+
+        .tabs {
+            display: flex;
+            background-color: #333;
+            padding: 0;
+        }
+
+        .subtabs-container {
+            width: 20%;
+            margin-left: 10%;
+            background-color: #333;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            color:white;
+        }
+
+        .subtabs {
+            display: flex;
+            background-color: #333;
+            padding: 0;
+            margin-bottom: 50px;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #333;
+            transition: background-color 0.3s;
+        }
+
+        .tab:hover {
+            background-color: #555;
+        }
+
+        .tab.active {
+            background-color: #007BFF;
+        }
+
+        .tab.active2 {
+            background-color: #1fc435;
+        }
+
+        input {
+            width: 100px;
+            height: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 30px;
+        }
+        .cuenta {
+            display: flex;
+            justify-content: center;  /* centra horizontalmente */
+            align-items: center;      /* centra verticalmente */
+        }
+        .mi-boton {
+            background-color: #2fa10c;       /* Color azul */
+            color: white;                    /* Texto blanco */
+            padding: 10px 20px;              /* Espaciado interno */
+            border: none;                   /* Sin borde */
+            border-radius: 5px;              /* Bordes redondeados */
+            cursor: pointer;                /* Cursor pointer al pasar el mouse */
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;                /* Tamaño de fuente */
+            transition: background-color 0.3s ease;
+            width: 200px;
+        }
+
+        .mi-boton:hover {
+            background-color: #297e18;      /* Azul más oscuro al pasar el mouse */
+        }
+
+         /* Fondo oscuro */
+        .modal {
+            display: none; /* oculto por defecto */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        /* Contenido del modal */
+        .modal-content {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            text-align: center;
+            font-size: 18px;
+            max-width: 300px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 36px;                /* Tamaño de fuente */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Las cosas de Guille</h1>
+        <h2>Conoce mis videojuegos favoritos</h2>
+        <img src="imgs/guille2.jpg"/>
+    </header>
+    <div class="tabs-container">
+        <div class="tabs">
+            <a href="index.html" class="tab">VideoJuegos</a>
+            <a href="aprender.html" class="tab active">Aprender</a>
+        </div>
+    </div>
+    <div class="subtabs-container">
+        <div class="subtabs">
+            <a href="aprender.html" class="tab active2">Matemáticas</a>
+            <a href="aprender-lengua.html" class="tab">Lengua</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="cuenta">100 + 150 = &nbsp;<input type="text" id="suma1"/></div>
+        <div class="cuenta">300 + 220 = &nbsp;<input type="text" id="suma2"/></div>
+        <div class="cuenta">270 + 350 = &nbsp;<input type="text" id="suma3"/></div>
+        <div class="cuenta">350 + 450 = &nbsp;<input type="text" id="suma4"/></div>
+        <div class="cuenta">170 + 363 = &nbsp;<input type="text" id="suma5"/></div>
+    </div>
+    <div class="container cuenta">
+        <button class="mi-boton" onclick="comprobar();">COMPROBAR</button>
+    </div>
+    <div id="miModal" class="modal">
+        <div class="modal-content" id="respuestaModal">
+            
+        </div>
+    </div>
+    <script>
+        state = "sumas";
+
+        function comprobar() {
+            if (state == "sumas")
+            {
+                if((document.getElementById('suma1').value == 250) &&
+                (document.getElementById('suma2').value == 520) &&
+                (document.getElementById('suma3').value == 620) &&
+                (document.getElementById('suma4').value == 800) &&
+                (document.getElementById('suma5').value == 533)) {
+                    document.getElementById('respuestaModal').innerHTML = "Todas las respuestas son correctas"
+                } else {
+                    document.getElementById('respuestaModal').innerHTML = "Hay algún error"
+                }
+                const modal = document.getElementById('miModal');    
+                // Mostrar el modal
+                modal.style.display = 'flex';
+
+                // Ocultar modal después de 5 segundos (5000 ms)
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -67,6 +67,21 @@
             padding: 0;
         }
 
+        .subtabs-container {
+            width: 20%;
+            margin-left: 10%;
+            background-color: #333;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            color:white;
+        }
+
+        .subtabs {
+            display: flex;
+            background-color: #333;
+            padding: 0;
+        }
+
         .tab {
             flex: 1;
             text-align: center;
@@ -84,6 +99,10 @@
         .tab.active {
             background-color: #007BFF;
         }
+
+        .tab.active2 {
+            background-color: #1fc435;
+        }
     </style>
 </head>
 <body>
@@ -94,47 +113,18 @@
     </header>
     <div class="tabs-container">
         <div class="tabs">
-            <a href="index.html" class="tab active">VideoJuegos</a>
-            <a href="aprender.html" class="tab">Aprender</a>
+            <a href="index.html" class="tab">VideoJuegos</a>
+            <a href="aprender.html" class="tab active">Aprender</a>
+        </div>
+    </div>
+    <div class="subtabs-container">
+        <div class="subtabs">
+            <a href="aprender.html" class="tab">Matemáticas</a>
+            <a href="aprender-lengua.html" class="tab active2">Lengua</a>
         </div>
     </div>
     <div class="container">
-        <div>
-            <p class="titulo">Stickman Clash</p>
-            <a href="https://www.crazygames.com/es/juego/stickman-clash" target="_blank">
-                <img src="imgs/stickman_clash.jpg" width="350px"/>
-            </a>
-        </div>
-        <div>
-            <p class="titulo">Brawl Stars</p>
-            <a href="https://supercell.com/en/games/brawlstars/" target="_blank">
-                <img src="imgs/brawl_stars.jpg" width="350px"/>
-            </a>
-        </div>        
-        <div>
-            <p class="titulo">Stumble Guys</p>
-            <a href="https://www.stumbleguys.com/" target="_blank">
-                <img src="imgs/stumble_guys.jpg" width="350px"/>
-            </a>
-        </div>   
-        <div>
-            <p class="titulo">Minecraft</p>
-            <a href="https://www.minecraft.com/" target="_blank">
-                <img src="imgs/minecraft.jpg" width="350px"/>
-            </a>
-        </div>   
-        <div>
-            <p class="titulo">Mario Kart</p>
-            <a href="https://mariokarttour.com/es-ES" target="_blank">
-                <img src="imgs/mario_kart.jpg" width="350px"/>
-            </a>
-        </div> 
-        <div>
-            <p class="titulo">Squad Busters</p>
-            <a href="https://squadbusters.supercell.com/es/" target="_blank">
-                <img src="imgs/squad_busters.jpg" width="350px"/>
-            </a>
-        </div>                                   
+                                        
     </div>
 </body>
 </html>
