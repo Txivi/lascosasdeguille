@@ -309,8 +309,6 @@
 
             // Ocultar modal después de 5 segundos (5000 ms)
             setTimeout(() => {
-                modal.style.display = 'none';
-
                 if(state == "sumas" && correcto)
                     state = "restas";
                 else if(state == "restas" && correcto)
@@ -320,8 +318,7 @@
                 else if(state == "divisiones" && correcto)
                     state = "raicescuadradas";
                 else if(state == "raicescuadradas" && correcto) {
-                    state = "ninguna";
-                    modal.style.display = 'flex';
+                    state = "sumas";
                 }
 
                 document.getElementById("sumas").style.display = 'none';
@@ -331,6 +328,8 @@
                 document.getElementById("raicescuadradas").style.display = 'none';
 
                 document.getElementById(state).style.display = 'grid';
+
+                modal.style.display = 'none';
             }, 5000);
         }
     </script>
