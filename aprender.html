@@ -159,6 +159,9 @@
             font-family: Arial, Helvetica, sans-serif;
             font-size: 36px;                /* Tamaño de fuente */
         }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -179,13 +182,46 @@
             <a href="aprender-lengua.html" class="tab">Lengua</a>
         </div>
     </div>
-    <div class="container">
+    <div class="container" id="sumas">
+        <div class="cuenta">SUMAS</div>
         <div class="cuenta">100 + 150 = &nbsp;<input type="text" id="suma1"/></div>
         <div class="cuenta">300 + 220 = &nbsp;<input type="text" id="suma2"/></div>
         <div class="cuenta">270 + 350 = &nbsp;<input type="text" id="suma3"/></div>
         <div class="cuenta">350 + 450 = &nbsp;<input type="text" id="suma4"/></div>
         <div class="cuenta">170 + 363 = &nbsp;<input type="text" id="suma5"/></div>
     </div>
+    <div class="container hidden" id="restas">
+        <div class="cuenta">RESTAS</div>
+        <div class="cuenta">314 - 102 = &nbsp;<input type="text" id="resta1"/></div>
+        <div class="cuenta">144 - 132 = &nbsp;<input type="text" id="resta2"/></div>
+        <div class="cuenta">188 - 159 = &nbsp;<input type="text" id="resta3"/></div>
+        <div class="cuenta">562 - 424 = &nbsp;<input type="text" id="resta4"/></div>
+        <div class="cuenta">531 - 184 = &nbsp;<input type="text" id="resta5"/></div>
+    </div>  
+    <div class="container hidden" id="multiplicaciones">
+        <div class="cuenta">MULTIPLICACIONES</div>
+        <div class="cuenta">32 x 2 = &nbsp;<input type="text" id="multiplicacion1"/></div>
+        <div class="cuenta">45 x 5 = &nbsp;<input type="text" id="multiplicacion2"/></div>
+        <div class="cuenta">33 x 3 = &nbsp;<input type="text" id="multiplicacion3"/></div>
+        <div class="cuenta">82 x 2 = &nbsp;<input type="text" id="multiplicacion4"/></div>
+        <div class="cuenta">500 x 500 = &nbsp;<input type="text" id="multiplicacion5"/></div>
+    </div>  
+    <div class="container hidden" id="divisiones">
+        <div class="cuenta">DIVISIONES</div>
+        <div class="cuenta">4 ÷ 2 = &nbsp;<input type="text" id="division1"/></div>
+        <div class="cuenta">6 ÷ 2 = &nbsp;<input type="text" id="division2"/></div>
+        <div class="cuenta">10 ÷ 2 = &nbsp;<input type="text" id="division3"/></div>
+        <div class="cuenta">12 ÷ 4 = &nbsp;<input type="text" id="division4"/></div>
+        <div class="cuenta">14 ÷ 2 = &nbsp;<input type="text" id="division5"/></div>
+    </div>  
+    <div class="container hidden" id="raicescuadradas">
+        <div class="cuenta">RAICES CUADRADAS</div>
+        <div class="cuenta">√64 = &nbsp;<input type="text" id="raizcuadrada1"/></div>
+        <div class="cuenta">√49 = &nbsp;<input type="text" id="raizcuadrada2"/></div>
+        <div class="cuenta">√36 = &nbsp;<input type="text" id="raizcuadrada3"/></div>
+        <div class="cuenta">√81 = &nbsp;<input type="text" id="raizcuadrada4"/></div>
+        <div class="cuenta">√91 = &nbsp;<input type="text" id="raizcuadrada5"/></div>
+    </div>      
     <div class="container cuenta">
         <button class="mi-boton" onclick="comprobar();">COMPROBAR</button>
     </div>
@@ -196,6 +232,7 @@
     </div>
     <script>
         state = "sumas";
+        correcto = false;
 
         function comprobar() {
             if (state == "sumas")
@@ -205,19 +242,96 @@
                 (document.getElementById('suma3').value == 620) &&
                 (document.getElementById('suma4').value == 800) &&
                 (document.getElementById('suma5').value == 533)) {
-                    document.getElementById('respuestaModal').innerHTML = "Todas las respuestas son correctas"
+                    correcto = true;
                 } else {
-                    document.getElementById('respuestaModal').innerHTML = "Hay algún error"
+                    correcto = false;
                 }
-                const modal = document.getElementById('miModal');    
-                // Mostrar el modal
-                modal.style.display = 'flex';
+            }                
+            else if (state == "restas")
+            {
+                if((document.getElementById('resta1').value == 212) &&
+                (document.getElementById('resta2').value == 12) &&
+                (document.getElementById('resta3').value == 29) &&
+                (document.getElementById('resta4').value == 138) &&
+                (document.getElementById('resta5').value == 347)) {
+                    correcto = true;
+                } else {
+                    correcto = false;
+                }
+            }      
+            else if (state == "multiplicaciones")
+            {
+                if((document.getElementById('multiplicacion1').value == 64) &&
+                (document.getElementById('multiplicacion2').value == 225) &&
+                (document.getElementById('multiplicacion3').value == 99) &&
+                (document.getElementById('multiplicacion4').value == 164) &&
+                (document.getElementById('multiplicacion5').value == 25000)) {
+                    correcto = true;
+                } else {
+                    correcto = false;
+                }
+            }  
+            else if (state == "divisiones")
+            {
+                if((document.getElementById('division1').value == 2) &&
+                (document.getElementById('division2').value == 3) &&
+                (document.getElementById('division3').value == 5) &&
+                (document.getElementById('division4').value == 3) &&
+                (document.getElementById('division5').value == 7)) {
+                    correcto = true;
+                } else {
+                    correcto = false;
+                }
+            }  
+            else if (state == "raicescuadradas")
+            {
+                if((document.getElementById('raizcuadrada1').value == 8) &&
+                (document.getElementById('raizcuadrada2').value == 7) &&
+                (document.getElementById('raizcuadrada3').value == 6) &&
+                (document.getElementById('raizcuadrada4').value == 9) &&
+                (document.getElementById('raizcuadrada5').value == 9.53)) {
+                    correcto = true;
+                } else {
+                    correcto = false;
+                }
+            }  
 
-                // Ocultar modal después de 5 segundos (5000 ms)
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                }, 5000);
-            }
+            if(correcto && state == "raicescuadradas")
+                document.getElementById('respuestaModal').innerHTML = "ENHORABUENA, has pasado todas las pruebas"
+            else if(correcto)
+                document.getElementById('respuestaModal').innerHTML = "Todas las respuestas son correctas"
+            else
+                document.getElementById('respuestaModal').innerHTML = "Hay algún error"
+
+            const modal = document.getElementById('miModal');    
+            // Mostrar el modal
+            modal.style.display = 'flex';
+
+            // Ocultar modal después de 5 segundos (5000 ms)
+            setTimeout(() => {
+                modal.style.display = 'none';
+
+                if(state == "sumas" && correcto)
+                    state = "restas";
+                else if(state == "restas" && correcto)
+                    state = "multiplicaciones";
+                else if(state == "multiplicaciones" && correcto)
+                    state = "divisiones";                    
+                else if(state == "divisiones" && correcto)
+                    state = "raicescuadradas";
+                else if(state == "raicescuadradas" && correcto) {
+                    state = "ninguna";
+                    modal.style.display = 'flex';
+                }
+
+                document.getElementById("sumas").style.display = 'none';
+                document.getElementById("restas").style.display = 'none';
+                document.getElementById("multiplicaciones").style.display = 'none';
+                document.getElementById("divisiones").style.display = 'none';
+                document.getElementById("raicescuadradas").style.display = 'none';
+
+                document.getElementById(state).style.display = 'grid';
+            }, 5000);
         }
     </script>
 </body>
