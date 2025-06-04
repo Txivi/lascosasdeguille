@@ -49,7 +49,7 @@
         /* Escritorio: 5 columnas */
         @media (min-width: 768px) {
             .container {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(1, 1fr);
             }
         }
 
@@ -80,6 +80,7 @@
             display: flex;
             background-color: #333;
             padding: 0;
+            margin-bottom: 50px;
         }
 
         .tab {
@@ -103,6 +104,64 @@
         .tab.active2 {
             background-color: #1fc435;
         }
+
+        input {
+            width: 700px;
+            height: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 30px;
+        }
+        .cuenta {
+            display: flex;
+            justify-content: center;  /* centra horizontalmente */
+            align-items: center;      /* centra verticalmente */
+            font-size: 30px;
+        }
+        .mi-boton {
+            background-color: #2fa10c;       /* Color azul */
+            color: white;                    /* Texto blanco */
+            padding: 10px 20px;              /* Espaciado interno */
+            border: none;                   /* Sin borde */
+            border-radius: 5px;              /* Bordes redondeados */
+            cursor: pointer;                /* Cursor pointer al pasar el mouse */
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;                /* Tamaño de fuente */
+            transition: background-color 0.3s ease;
+            width: 200px;
+        }
+
+        .mi-boton:hover {
+            background-color: #297e18;      /* Azul más oscuro al pasar el mouse */
+        }
+
+         /* Fondo oscuro */
+        .modal {
+            display: none; /* oculto por defecto */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        /* Contenido del modal */
+        .modal-content {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            text-align: center;
+            font-size: 18px;
+            max-width: 300px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 36px;                /* Tamaño de fuente */
+        }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -123,8 +182,91 @@
             <a href="aprender-lengua.html" class="tab active2">Lengua</a>
         </div>
     </div>
-    <div class="container">
-                                        
+    <div class="container" id="enunciativa">
+        <div class="cuenta">Escribe una oración enunciativa</div>
+        <div class="cuenta"><input type="text" id="frase-enunciativa"/></div>
     </div>
+    <div class="container hidden" id="exclamativa">
+        <div class="cuenta">Escribe una oración exclamativa</div>
+        <div class="cuenta"><input type="text" id="frase-exclamativa"/></div>
+    </div>    
+    <div class="container hidden" id="interrogativa">
+        <div class="cuenta">Escribe una oración interrogativa</div>
+        <div class="cuenta"><input type="text" id="frase-interrogativa"/></div>
+    </div>    
+    <div class="container cuenta">
+        <button class="mi-boton" onclick="comprobar();">COMPROBAR</button>
+    </div>
+    <div id="miModal" class="modal">
+        <div class="modal-content" id="respuestaModal">
+            
+        </div>
+    </div>
+    <script>
+        state = "enunciativa";
+        correcto = false;
+
+        function comprobar() {
+            if (state == "enunciativa")
+            {
+                texto = document.getElementById('frase-enunciativa').value;
+
+                if(texto != '') {
+                    correcto = true;
+                } else {
+                    correcto = false;
+                }
+            }                
+            else if (state == "exclamativa")
+            {
+                texto = document.getElementById('frase-exclamativa').value;
+
+                if(texto.charAt(0) == '¡' && texto.charAt(texto.length - 1) == "!") {
+                    correcto = true;
+                } else {
+                    correcto = false;
+                }
+            }      
+            else if (state == "interrogativa")
+            {
+                texto = document.getElementById('frase-interrogativa').value;
+
+                if(texto.charAt(0) == '¿' && texto.charAt(texto.length - 1) == "?") {
+                    correcto = true;
+                } else {
+                    correcto = false;
+                }
+            }
+
+            if(correcto && state == "interrogativa")
+                document.getElementById('respuestaModal').innerHTML = "ENHORABUENA, has pasado todas las pruebas"
+            else if(correcto)
+                document.getElementById('respuestaModal').innerHTML = "Es correcto"
+            else
+                document.getElementById('respuestaModal').innerHTML = "Hay algún error"
+
+            const modal = document.getElementById('miModal');    
+            // Mostrar el modal
+            modal.style.display = 'flex';
+
+            // Ocultar modal después de 5 segundos (5000 ms)
+            setTimeout(() => {
+                if(state == "enunciativa" && correcto)
+                    state = "exclamativa";
+                else if(state == "exclamativa" && correcto)
+                    state = "interrogativa";
+                else if(state == "interrogativa" && correcto)
+                    state = "enunciativa";                    
+
+                document.getElementById("enunciativa").style.display = 'none';
+                document.getElementById("exclamativa").style.display = 'none';
+                document.getElementById("interrogativa").style.display = 'none';
+
+                document.getElementById(state).style.display = 'grid';
+
+                modal.style.display = 'none';
+            }, 5000);
+        }
+    </script>
 </body>
 </html>
